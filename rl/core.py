@@ -18,7 +18,7 @@ class Agent(object):
 
     def fit(self, env, nb_steps, action_repetition=1, callbacks=None, verbose=1,
             visualize=False, nb_max_start_steps=0, start_step_policy=None, log_interval=10000,
-            nb_max_episode_steps=None):
+            nb_max_episode_steps=None, start_step=0):
         if not self.compiled:
             raise RuntimeError('Your tried to fit your agent but it hasn\'t been compiled yet. Please call `compile()` before `fit()`.')
         if action_repetition < 1:
@@ -53,7 +53,7 @@ class Agent(object):
         callbacks.on_train_begin()
 
         episode = 0
-        self.step = 0
+        self.step = start_step
         observation = None
         episode_reward = None
         episode_step = None
